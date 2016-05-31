@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>      
+		<meta charset="UTF-8">
+		<title>Test</title>
+		<link rel="shortcut icon" href="img/kitti.ico">
+		<link href="css/reset.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="js/dist/QBase.js"></script>
+		<script src="js/libs/tmpl.js"></script>
+		<script src="js/dist/script.js"></script>
+	</head>
+	<body>
+		<script type="text/tmpl" id="test__template">
+			<div class="test__wrapper">
+				<h1 class="test__title"><%= title%></h1>
+				<div class="test__prompts"><%= prompts%></div>
+				<% for ( var i = 0; i < QBase.question.length; i++ ) { %>
+					<ol class="test__questionBox">
+						<h2 class="test__questionText"><%= QBase.question[i].text%></h2>
+						<% for ( var j = 0; j < QBase.question[i].answer.length; j++ ) { %>
+							<li class="test__answer">
+								<label>
+									<input type="checkbox" class="<%='check'+i%>" id="<%= 'chBox_'+i+'_'+j %>">
+									<%= QBase.question[i].answer[j].text %>
+								</label>
+							</li>	
+						<% } %>
+					</ol>
+				<% } %>
+				<input class="test__button" type="button" value="Проверить ответы">
+				<div id="modalForm">
+					<span id="modalForm__close">X</span> 
+					<p id="modalText"></p>
+				</div>
+				<div id="modalForm__overlay"></div>	
+			</div>			
+		</script>
+	</body>
+</html>
